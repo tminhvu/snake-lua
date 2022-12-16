@@ -154,8 +154,8 @@ function love.update(dt)
     end
 end
 
-local x = math.random(1, cols / snake_size)
-local y = math.random(1, rows / snake_size)
+local x = math.random(1, cols / snake_size - 1)
+local y = math.random(1, rows / snake_size - 1)
 
 function love.draw()
     drawBoard()
@@ -168,8 +168,8 @@ function love.draw()
     else
         if appleIsEaten(x, y) then
             lengthen(x, y)
-            x = math.random(1, cols / snake_size)
-            y = math.random(1, rows / snake_size)
+            x = math.random(1, cols / snake_size - 1)
+            y = math.random(1, rows / snake_size - 1)
         end
     end
 
