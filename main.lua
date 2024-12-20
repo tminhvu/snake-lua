@@ -36,13 +36,13 @@ local snakeMove = function(dir)
     }
 
     if dir == 'left' then
-        if snake.head.x > snake_size then
+        if snake.head.x > snake_size + 10 then
             snake.head.x = snake.head.x - snake_size
         else
             snake.head.x = cols - snake_size
         end
     elseif dir == 'right' then
-        if snake.head.x < cols - snake_size then
+        if snake.head.x + snake_size < cols - snake_size then
             snake.head.x = snake.head.x + snake_size
         else
             snake.head.x = snake_size
@@ -117,19 +117,19 @@ function love.keypressed(key)
     if key == 'q' then
         love.event.quit()
     elseif not gameover then
-        if key == 'h' then
+        if key == 'h' or key == 'left' then
             if dir ~= 'right' then
                 dir = 'left'
             end
-        elseif key == 'l' then
+        elseif key == 'l' or key == 'right' then
             if dir ~= 'left' then
                 dir = 'right'
             end
-        elseif key == 'j' then
+        elseif key == 'j' or key == 'down' then
             if dir ~= 'up' then
                 dir = 'down'
             end
-        elseif key == 'k' then
+        elseif key == 'k' or key == 'up' then
             if dir ~= 'down' then
                 dir = 'up'
             end
@@ -138,7 +138,7 @@ function love.keypressed(key)
 end
 
 local dtotal = 0
-local speed = 0.12
+local speed = 0.07
 function love.update(dt)
     dtotal = dtotal + dt
     if dtotal >= speed then
